@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void	ft_free_double(char **s, int size)
 {
@@ -29,7 +30,17 @@ char	**ft_size(char const *s, char c)
 			size++;
 		}
 	}
-	split = (char **)malloc(sizeof(char *) * (size + 1));
+	if (size > 0)
+	{
+		split = (char **)malloc(sizeof(char *) * (size + 1));
+		printf("split_size: %d\n", size + 1);
+	}
+	else
+	{
+		split = NULL;
+		printf("split_size: %d\n", 0);
+	}
+	printf("split_pointer: %p\n", split);
 	return (split);
 }
 
@@ -42,7 +53,7 @@ char	**ft_split_malloc(char const *s, char c)
 
 	split = ft_size(s, c);
 	i = 0;
-	while (*s)
+	while (*s && split)
 	{
 		if (!(*s == c))
 		{
@@ -64,9 +75,11 @@ char	**ft_split_malloc(char const *s, char c)
 		else
 			s++;
 	}
+	printf("checkpoint2\n");
 	return (split);
 }
 
+#include <stdio.h>
 
 char	**ft_split(char const *s, char c)
 {
@@ -76,7 +89,7 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	split = ft_split_malloc(s, c);
-	while (*s)
+	while (*s && split)
 	{
 		if (!(*s == c))
 		{
@@ -84,11 +97,15 @@ char	**ft_split(char const *s, char c)
 			while (!(*s == c || *s == 0))
 				split[i][j++] = *(s++);
 			split[i][j] = '\0';
+			printf("split[%2d]: %15s\n", j, split[i]);
 			i++;
 		}
 		else
 			s++;
+		if (*s == '\0')
+			split[i] = NULL;
 	}
+	printf("checkpoint3\n");
 	return (split);
 }
 
