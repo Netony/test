@@ -2,6 +2,42 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+char	*ft_parser(char *s, char c)
+{
+	if (*s == '\0')
+		;
+	else
+	{
+		if (*s == c)
+			s++;
+		else
+		{
+			// Do something
+		}
+
+	}
+	return (s);
+}
+
+void	ft_parser(char **s, char c)
+{
+	if (**s == '\0')
+		;
+	else
+	{
+		if (*s == c)
+			s++;
+		else
+		{
+			// Do something
+		}
+
+	}
+	return (s);
+}
+
+/*
+
 void	ft_free_double(char **s, int size)
 {
 	int	i;
@@ -109,3 +145,4 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }
 
+*/
