@@ -9,8 +9,7 @@ $(NAME) : $(LIB)
 $(LIBFT) : $(LIBS)
 
 $(LIBS) : 
-	make $(@:
-	
+	make $(@: 
 
 fclean : 
 	rm -rf $(LIB) $(NAME)

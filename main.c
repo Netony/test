@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
 /*
 int	main(int argc, char **argv, char **env)
@@ -17,6 +18,7 @@ int	main(int argc, char **argv, char **env)
 }
 */
 
+/*
 int	main(void)
 {
 	char	*p;
@@ -28,4 +30,13 @@ int	main(void)
 	printf("Malloc Size 0: %p\n", p);
 	printf("Size of p: %lu\n", sizeof(p));
 	return (0);
+}
+*/
+
+int	main(void)
+{
+	char	*hello;
+	hello = get_next_line(0);
+	printf("%s", hello);
+
 }
