@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "../libft.h"
 
 char	*ft_parser(char *s, char c)
 {
