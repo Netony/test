@@ -1,11 +1,11 @@
 #include <unistd.h>
 #include <stdlib.h>
+#include "../libft.h"
 
 char	*ft_do1(char *s, char c)
 {
 	while (*s != c && *s != '\0')
 	{
-		
 		s++;
 	}
 }
