@@ -3,38 +3,47 @@
 #include <stdio.h>
 #include "../libft.h"
 
-char	*ft_parser(char *s, char c)
+char	*ft_move_pointer(char *s, char c, int rev)
 {
-	if (*s == '\0')
-		;
-	else
-	{
-		if (*s == c)
-			s++;
-		else
-		{
-			// Do something
-		}
-
-	}
+	while (*s && (*s == c) == (!rev))
+		s++;
 	return (s);
 }
 
-void	ft_parser(char **s, char c)
+char	**ft_charpp(char const *s, char c)
 {
-	if (**s == '\0')
-		;
-	else
+	int		size;
+	char	**split;
+
+	size = 0;
+	while (*s)
 	{
-		if (*s == c)
-			s++;
+		if (s == c)
+			ft_move_pointer(s, c, 1);
 		else
 		{
-			// Do something
+			ft_move_pointer(s, c, 0);
+			size++;
 		}
-
 	}
-	return (s);
+	if (size != 0)
+	{
+		split = (char **)malloc(sizeof(char *) * size + 1);
+		if (split)
+			return (split);
+	}
+	return (NULL);
+}
+
+char	*ft_parser(char const *s, char c)
+{
+	while (*s)
+	{
+		if (s == c)
+			ft_move_pointer(s, c, 0);
+		else
+			
+	}
 }
 
 /*
