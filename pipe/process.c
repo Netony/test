@@ -9,31 +9,36 @@ void	ft_exec_sleep(void);
 int	main(void)
 {
 	int	i;
-	int	fds[2];
-//	int	status;
+	int	pfd[2];
+	int	ffd[2];
 
 	dup2(open("./infile", O_RDONLY), 0);
 	i = 0;
 	while (i++ < 5)
 	{
-		pipe(fds);
+		pipe(pfd);
 		if (fork() == 0)
 		{
 			if (i != 5)
 			{
-				close(fds[0]);
-				dup2(fds[1], 1);
-				if (i % 2 == 0)
-					ft_exec_sleep();
+				close(pfd[0]);
+				dup2(pfd[1], 1);
+				if (i == 1)
+					ft_exec_ls();
+				else
+					ft_exec_cat();
 			}
-			ft_exec_cat();
-		}
-		close(fds[1]);
-		dup2(fds[0], 0);
-	}
+			else
+			{
+				close(pfd[0]);
+				dup2(pfd[1], open("./outfile", O_WRONLY | O_CREAT, 777));
+				ft_exec_cat();
+			}
 
-//	dup2(open("./outfile", O_WRONLY | append), 1);
-	
+		}
+		close(pfd[1]);
+		dup2(pfd[0], 0);
+	}
 }
 
 void	ft_exec_ls(void)
